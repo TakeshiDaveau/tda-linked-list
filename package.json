@@ -1,19 +1,27 @@
 {
-  "name": "tda-linked-list",
+  "name": "@tdaveau/linked-list",
   "version": "0.0.1",
-  "main": "index.js",
   "repository": "git@github.com:TakeshiDaveau/tda-linked-list.git",
   "author": "Takeshi <takeshi@artips.fr>",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "jest -o --watchAll"
+    "build": "rimraf dist/ && tsc -p tsconfig.json",
+    "test": "jest -o --watchAll",
+    "docs": "typedoc --out docs src/index.ts"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.1",
     "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",
     "ts-node": "^10.0.0",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   }
 }
