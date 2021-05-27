@@ -71,15 +71,90 @@ export class SingleLinkedList<T = unknown> {
     return tail;
   }
 
-  insertAtBeginning(node: Node<T>): void {}
+  /**
+   * Insert a node at the beginning of the liste then shift all others
+   * elements
+   *
+   * @param node  node to add at beginning
+   */
+  insertFirst(node: Node<T>): void {
+    if (!node) {
+      return;
+    }
+    node.next = this.#head;
+    this.#head = node;
+  }
 
-  insertAtEnd(node: Node<T>): void {}
+  /**
+   * Add a new node at the end of the liste
+   *
+   * @param node node to add at the end
+   */
+  insertLast(node: Node<T>): void {
+    if (!node) {
+      return;
+    }
+    if (!this.#head) {
+      this.#head = node;
+      return;
+    }
+    let tail = this.#head;
+    while (tail?.next) {
+      tail = tail.next;
+    }
+    tail.next = node;
+  }
 
-  insertAt(index: number, node: Node<T>): void {}
+  /**
+   * Insert an element inside a linked list with specific position
+   *
+   * @param index position of the added element
+   * @param node node to add
+   */
+  insertAt(index: number, node: Node<T>): void {
+    if (!node) {
+      return;
+    }
+    let counter = 0;
+    let tail = this.#head;
+    while (tail?.next) {
+      if (counter === index - 1) {
+        node.next = tail.next;
+        tail.next = node;
+      }
+      tail = tail.next;
+      counter++;
+    }
+  }
 
-  deleteFirstNode(): void {}
+  deleteFirst(): void {
+    this.#head = this.#head ? this.#head.next : null;
+  }
 
-  deleteLastNode(): void {}
+  deleteLast(): void {
+    if (!this.#head) {
+      return;
+    }
+    let tail = this.#head;
+    while (tail?.next?.next) {
+      tail = tail.next;
+    }
+    tail.next = null;
+  }
 
-  deleteAt(): void {}
+  deleteAt(index: number): void {
+    if (!this.#head) {
+      return;
+    }
+    let counter = 0;
+    let tail = this.#head;
+    while (tail?.next) {
+      if (counter === index - 1) {
+        tail.next = tail.next.next;
+      }
+      // @ts-ignore
+      tail = tail.next;
+      counter++;
+    }
+  }
 }

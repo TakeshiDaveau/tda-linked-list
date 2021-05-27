@@ -1,7 +1,7 @@
 export class Node<T = unknown> {
-  public data?: T | null;
-  public next?: Node<T> | null;
-  public prev?: Node<T> | null;
+  public data: T | null;
+  public next: Node<T> | null;
+  public prev: Node<T> | null;
   constructor(data?: T | Node<T>, next?: Node<T>, prev?: Node<T>) {
     if (data instanceof Node) {
       this.data = data.data ?? null;
